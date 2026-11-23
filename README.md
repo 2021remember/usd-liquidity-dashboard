@@ -130,3 +130,27 @@
 本仓库使用 GitHub Pages 发布：`Settings → Pages → Source: Deploy from a branch → main / (root)`。
 
 更新方式：覆盖 `index.html` 并提交，等待 Pages 重新构建（约 30–90 秒）。
+
+---
+
+## 本地使用与更新（Windows）
+
+这台电脑已经配置好，**不需要登录 GitHub 网页**也能拉取和推送。
+
+便携版 Git 位置：`D:\Tools\PortableGit\cmd\git.exe`（免安装、不需要管理员权限）
+
+```powershell
+$env:PATH = "D:\Tools\PortableGit\cmd;" + $env:PATH
+cd D:\美元流动性监控台\github-repo
+git pull            # 拉取最新
+git status          # 查看改动
+```
+
+更新线上页面的两种方式：
+
+1. 本仓库提交后推送：`git add -A; git commit -m "update"; git push`，GitHub Pages 会自动重新构建（约 30–90 秒）。
+2. 直接在项目根目录双击 `发布工具\github_publish.bat`，走 GitHub API 覆盖 `index.html`，不需要 git。
+
+主入口 Cloudflare 的更新：双击 `更新入口\一键发布到Cloudflare.bat`。
+
+> 提交凭据保存在本机 `%USERPROFILE%\.git-credentials`，撤销 token 后需要重新写入。
